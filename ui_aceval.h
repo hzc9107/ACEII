@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'aceval.ui'
 **
-** Created: Thu Aug 1 14:37:17 2013
+** Created: Mon Aug 5 13:38:03 2013
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -376,7 +376,9 @@ public:
         spinBox_2->setSizePolicy(sizePolicy1);
         spinBox_2->setMaximumSize(QSize(47, 24));
         spinBox_2->setAlignment(Qt::AlignCenter);
-        spinBox_2->setSuffix(QString::fromUtf8(""));
+        spinBox_2->setSuffix(QString::fromUtf8("%"));
+        spinBox_2->setMaximum(9999);
+        spinBox_2->setValue(100);
 
         verticalLayout_8->addWidget(spinBox_2);
 
@@ -395,16 +397,19 @@ public:
 
         toolButton_3 = new QToolButton(centralWidget);
         toolButton_3->setObjectName(QString::fromUtf8("toolButton_3"));
+        toolButton_3->setMinimumSize(QSize(35, 35));
 
         horizontalLayout_7->addWidget(toolButton_3);
 
         toolButton_4 = new QToolButton(centralWidget);
         toolButton_4->setObjectName(QString::fromUtf8("toolButton_4"));
+        toolButton_4->setMinimumSize(QSize(35, 35));
 
         horizontalLayout_7->addWidget(toolButton_4);
 
         toolButton_5 = new QToolButton(centralWidget);
         toolButton_5->setObjectName(QString::fromUtf8("toolButton_5"));
+        toolButton_5->setMinimumSize(QSize(35, 35));
 
         horizontalLayout_7->addWidget(toolButton_5);
 
@@ -504,7 +509,7 @@ public:
         AceVal->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(AceVal);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 758, 20));
+        menuBar->setGeometry(QRect(0, 0, 758, 25));
         AceVal->setMenuBar(menuBar);
         mainToolBar = new QToolBar(AceVal);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));

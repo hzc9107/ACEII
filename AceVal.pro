@@ -13,8 +13,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        aceval.cpp
+        aceval.cpp \
+    pipeline.cpp
 
-HEADERS  += aceval.h
+HEADERS  += aceval.h \
+    pipeline.h
 
 FORMS    += aceval.ui
