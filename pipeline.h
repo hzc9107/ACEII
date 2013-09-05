@@ -8,7 +8,7 @@
 class pipeline
 {
 public:
-    pipeline(unsigned long WinID);
+    pipeline(unsigned long WinID, const char *Filename);
     ~pipeline();
     void SetPlaying(void);
     void SetPaused(void);

@@ -14,8 +14,6 @@ class AceVal : public QMainWindow
 public:
     explicit AceVal(QWidget *parent = 0);
     ~AceVal();
-	void CusLay(void);
-    void GstIFace(void);
     pipeline *Pipeline;
     
 private slots:
@@ -25,8 +23,19 @@ private slots:
 
     void on_toolButton_5_clicked();
 
+    void on_spinBox_2_valueChanged(int arg1);
+
+    void OnExit();
+
+    void OnOpen();
+
 private:
     Ui::AceVal *ui;
+    void CusLay(void);
+    void GstIFace(const char *filename);
+    void ConnectMenu(void);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
 };
 
 #endif // ACEVAL_H

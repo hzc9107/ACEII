@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'aceval.ui'
 **
-** Created: Mon Aug 5 13:38:03 2013
+** Created: Mon Aug 5 15:00:47 2013
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -21,6 +21,7 @@
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
 #include <QtGui/QMainWindow>
+#include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
 #include <QtGui/QSlider>
 #include <QtGui/QSpacerItem>
@@ -36,6 +37,9 @@ QT_BEGIN_NAMESPACE
 class Ui_AceVal
 {
 public:
+    QAction *actionOpen_File;
+    QAction *actionSave_File;
+    QAction *actionClose;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout_10;
     QHBoxLayout *horizontalLayout_5;
@@ -95,6 +99,8 @@ public:
     QToolButton *toolButton;
     QToolButton *toolButton_2;
     QMenuBar *menuBar;
+    QMenu *menuFile;
+    QMenu *menuEdit;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -103,6 +109,12 @@ public:
         if (AceVal->objectName().isEmpty())
             AceVal->setObjectName(QString::fromUtf8("AceVal"));
         AceVal->resize(758, 499);
+        actionOpen_File = new QAction(AceVal);
+        actionOpen_File->setObjectName(QString::fromUtf8("actionOpen_File"));
+        actionSave_File = new QAction(AceVal);
+        actionSave_File->setObjectName(QString::fromUtf8("actionSave_File"));
+        actionClose = new QAction(AceVal);
+        actionClose->setObjectName(QString::fromUtf8("actionClose"));
         centralWidget = new QWidget(AceVal);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         verticalLayout_10 = new QVBoxLayout(centralWidget);
@@ -270,7 +282,7 @@ public:
         label_7->setObjectName(QString::fromUtf8("label_7"));
         sizePolicy1.setHeightForWidth(label_7->sizePolicy().hasHeightForWidth());
         label_7->setSizePolicy(sizePolicy1);
-        label_7->setMaximumSize(QSize(72, 15));
+        label_7->setMaximumSize(QSize(84, 15));
 
         verticalLayout_3->addWidget(label_7);
 
@@ -374,7 +386,7 @@ public:
         spinBox_2->setObjectName(QString::fromUtf8("spinBox_2"));
         sizePolicy1.setHeightForWidth(spinBox_2->sizePolicy().hasHeightForWidth());
         spinBox_2->setSizePolicy(sizePolicy1);
-        spinBox_2->setMaximumSize(QSize(47, 24));
+        spinBox_2->setMaximumSize(QSize(70, 24));
         spinBox_2->setAlignment(Qt::AlignCenter);
         spinBox_2->setSuffix(QString::fromUtf8("%"));
         spinBox_2->setMaximum(9999);
@@ -510,6 +522,10 @@ public:
         menuBar = new QMenuBar(AceVal);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 758, 25));
+        menuFile = new QMenu(menuBar);
+        menuFile->setObjectName(QString::fromUtf8("menuFile"));
+        menuEdit = new QMenu(menuBar);
+        menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
         AceVal->setMenuBar(menuBar);
         mainToolBar = new QToolBar(AceVal);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -517,6 +533,13 @@ public:
         statusBar = new QStatusBar(AceVal);
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
         AceVal->setStatusBar(statusBar);
+
+        menuBar->addAction(menuFile->menuAction());
+        menuBar->addAction(menuEdit->menuAction());
+        menuFile->addAction(actionOpen_File);
+        menuFile->addAction(actionSave_File);
+        menuFile->addSeparator();
+        menuFile->addAction(actionClose);
 
         retranslateUi(AceVal);
 
@@ -526,6 +549,9 @@ public:
     void retranslateUi(QMainWindow *AceVal)
     {
         AceVal->setWindowTitle(QApplication::translate("AceVal", "AceVal", 0, QApplication::UnicodeUTF8));
+        actionOpen_File->setText(QApplication::translate("AceVal", "Open File", 0, QApplication::UnicodeUTF8));
+        actionSave_File->setText(QApplication::translate("AceVal", "Recent Files", 0, QApplication::UnicodeUTF8));
+        actionClose->setText(QApplication::translate("AceVal", "Close", 0, QApplication::UnicodeUTF8));
         label_5->setText(QApplication::translate("AceVal", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600;\">Player Info:</span></p></body></html>", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("AceVal", "Name:", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("AceVal", "Number:", 0, QApplication::UnicodeUTF8));
@@ -542,6 +568,8 @@ public:
         label_10->setText(QApplication::translate("AceVal", "Scene Selection:", 0, QApplication::UnicodeUTF8));
         toolButton->setText(QApplication::translate("AceVal", "...", 0, QApplication::UnicodeUTF8));
         toolButton_2->setText(QApplication::translate("AceVal", "...", 0, QApplication::UnicodeUTF8));
+        menuFile->setTitle(QApplication::translate("AceVal", "File", 0, QApplication::UnicodeUTF8));
+        menuEdit->setTitle(QApplication::translate("AceVal", "Edit", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };
