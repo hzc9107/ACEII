@@ -5,7 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui
-
+INCLUDEPATH +=  /usr/include/gstreamer-0.10 /usr/include/glib-2.0 /usr/lib/i386-linux-gnu/glib-2.0/include /usr/include/libxml2
+LIBS += -lgstinterfaces-0.10 -lgstreamer-0.10 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lxml2 -lglib-2.0
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = AceVal
@@ -15,10 +16,19 @@ TEMPLATE = app
 SOURCES += main.cpp\
         aceval.cpp \
     pipeline.cpp \
-    scene.cpp
+    scenedialog.cpp \
+    playerdialog.cpp \
+    playerscontrol.cpp
 
 HEADERS  += aceval.h \
     pipeline.h \
-    scene.h
+    scene.h \
+    scenedialog.h \
+    player.h \
+    playerdialog.h \
+    playerscontrol.h
 
-FORMS    += aceval.ui
+FORMS    += aceval.ui \
+    scenedialog.ui \
+    playerdialog.ui \
+    playerscontrol.ui

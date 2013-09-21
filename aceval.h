@@ -2,6 +2,9 @@
 #define ACEVAL_H
 
 #include <QMainWindow>
+#include <QVector>
+#include "scene.h"
+#include "player.h"
 class pipeline;
 namespace Ui {
 class AceVal;
@@ -15,7 +18,8 @@ public:
     explicit AceVal(QWidget *parent = 0);
     ~AceVal();
     pipeline *Pipeline;
-    
+    QVector<Scene> Scenes;
+    QVector<Player> Players;
 private slots:
     void on_toolButton_3_clicked();
 
@@ -31,11 +35,17 @@ private slots:
 
 private:
     Ui::AceVal *ui;
+    bool ShiftPressed;
     void CusLay(void);
     void GstIFace(const char *filename);
     void ConnectMenu(void);
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
+    void keyPressEvent(QKeyEvent *);
+    void keyReleaseEvent(QKeyEvent *);
+    void CreateScene();
+    void AddPlayer();
+    void ChoosePlayer();
 };
 
 #endif // ACEVAL_H
