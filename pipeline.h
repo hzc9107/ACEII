@@ -16,9 +16,10 @@ public:
     double GetDuration(void);
     double GetPosition(void);
     void ChangeSpeed(int value);
+    void ProveMethod();
 private:
     GMainLoop *loop;
-    GstElement *pipeline1, *source, *DecDem, *conv, *sink, *video_queue;
+    GstElement *pipeline1, *source, *DecDem, *conv, *sink, *video_queue, *vrate, *filter;
     GstBus *bus;
     guint bus_watch_id;
     unsigned long WinID_pipe;
@@ -29,7 +30,8 @@ private:
         switch (GST_MESSAGE_TYPE (msg)) {
             case GST_MESSAGE_EOS:
                 g_print("End of stream\n");
-
+            default:
+                return true;
         }
     }
 

@@ -231,9 +231,50 @@
     <property name="title">
      <string>Edit</string>
     </property>
+    <widget class="QMenu" name="menuPlayers">
+     <property name="title">
+      <string>Players</string>
+     </property>
+     <widget class="QMenu" name="menuPlayer_List">
+      <property name="title">
+       <string>Player List</string>
+      </property>
+      <addaction name="actionHome"/>
+      <addaction name="actionAway"/>
+     </widget>
+     <addaction name="actionInsert_Player"/>
+     <addaction name="menuPlayer_List"/>
+    </widget>
+    <widget class="QMenu" name="menuScenes">
+     <property name="title">
+      <string>Scenes</string>
+     </property>
+     <addaction name="actionInsert_Scene"/>
+     <addaction name="actionScenes_List"/>
+    </widget>
+    <addaction name="menuPlayers"/>
+    <addaction name="menuScenes"/>
+   </widget>
+   <widget class="QMenu" name="menuVideo">
+    <property name="title">
+     <string>Video</string>
+    </property>
+    <widget class="QMenu" name="menuSpeed">
+     <property name="title">
+      <string>Speed</string>
+     </property>
+     <addaction name="actionFrame_by_frame"/>
+    </widget>
+    <addaction name="menuSpeed"/>
+    <addaction name="actionProperties"/>
+    <addaction name="separator"/>
+    <addaction name="actionPlay"/>
+    <addaction name="actionPause"/>
+    <addaction name="actionStop"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
+   <addaction name="menuVideo"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -248,6 +289,9 @@
    <property name="text">
     <string>Open File</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+O</string>
+   </property>
   </action>
   <action name="actionSave_File">
    <property name="text">
@@ -257,6 +301,65 @@
   <action name="actionClose">
    <property name="text">
     <string>Close</string>
+   </property>
+  </action>
+  <action name="actionFrame_by_frame">
+   <property name="text">
+    <string>Frame by frame</string>
+   </property>
+  </action>
+  <action name="actionPlay">
+   <property name="text">
+    <string>Play</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionPause">
+   <property name="text">
+    <string>Pause</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+P</string>
+   </property>
+  </action>
+  <action name="actionStop">
+   <property name="text">
+    <string>Stop</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionProperties">
+   <property name="text">
+    <string>Properties</string>
+   </property>
+  </action>
+  <action name="actionInsert_Player">
+   <property name="text">
+    <string>Insert Player</string>
+   </property>
+  </action>
+  <action name="actionInsert_Scene">
+   <property name="text">
+    <string>Insert Scene</string>
+   </property>
+  </action>
+  <action name="actionScenes_List">
+   <property name="text">
+    <string>Scenes List</string>
+   </property>
+  </action>
+  <action name="actionHome">
+   <property name="text">
+    <string>Home</string>
+   </property>
+  </action>
+  <action name="actionAway">
+   <property name="text">
+    <string>Away</string>
    </property>
   </action>
  </widget>

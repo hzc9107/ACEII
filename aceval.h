@@ -41,8 +41,6 @@ private:
     void ConnectMenu(void);
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
-    void keyPressEvent(QKeyEvent *);
-    void keyReleaseEvent(QKeyEvent *);
     void CreateScene();
     void AddPlayer();
     void ChoosePlayer();

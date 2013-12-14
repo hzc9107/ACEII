@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'aceval.ui'
 **
-** Created: Tue Sep 10 22:39:39 2013
+** Created: Sat Dec 14 15:37:18 2013
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -38,6 +38,16 @@ public:
     QAction *actionOpen_File;
     QAction *actionSave_File;
     QAction *actionClose;
+    QAction *actionFrame_by_frame;
+    QAction *actionPlay;
+    QAction *actionPause;
+    QAction *actionStop;
+    QAction *actionProperties;
+    QAction *actionInsert_Player;
+    QAction *actionInsert_Scene;
+    QAction *actionScenes_List;
+    QAction *actionHome;
+    QAction *actionAway;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout_10;
     QHBoxLayout *horizontalLayout_5;
@@ -59,10 +69,14 @@ public:
     QToolButton *toolButton_4;
     QToolButton *toolButton_5;
     QSpacerItem *horizontalSpacer_2;
-    QFrame *line;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuEdit;
+    QMenu *menuPlayers;
+    QMenu *menuPlayer_List;
+    QMenu *menuScenes;
+    QMenu *menuVideo;
+    QMenu *menuSpeed;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -77,6 +91,26 @@ public:
         actionSave_File->setObjectName(QString::fromUtf8("actionSave_File"));
         actionClose = new QAction(AceVal);
         actionClose->setObjectName(QString::fromUtf8("actionClose"));
+        actionFrame_by_frame = new QAction(AceVal);
+        actionFrame_by_frame->setObjectName(QString::fromUtf8("actionFrame_by_frame"));
+        actionPlay = new QAction(AceVal);
+        actionPlay->setObjectName(QString::fromUtf8("actionPlay"));
+        actionPause = new QAction(AceVal);
+        actionPause->setObjectName(QString::fromUtf8("actionPause"));
+        actionStop = new QAction(AceVal);
+        actionStop->setObjectName(QString::fromUtf8("actionStop"));
+        actionProperties = new QAction(AceVal);
+        actionProperties->setObjectName(QString::fromUtf8("actionProperties"));
+        actionInsert_Player = new QAction(AceVal);
+        actionInsert_Player->setObjectName(QString::fromUtf8("actionInsert_Player"));
+        actionInsert_Scene = new QAction(AceVal);
+        actionInsert_Scene->setObjectName(QString::fromUtf8("actionInsert_Scene"));
+        actionScenes_List = new QAction(AceVal);
+        actionScenes_List->setObjectName(QString::fromUtf8("actionScenes_List"));
+        actionHome = new QAction(AceVal);
+        actionHome->setObjectName(QString::fromUtf8("actionHome"));
+        actionAway = new QAction(AceVal);
+        actionAway->setObjectName(QString::fromUtf8("actionAway"));
         centralWidget = new QWidget(AceVal);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         verticalLayout_10 = new QVBoxLayout(centralWidget);
@@ -210,13 +244,6 @@ public:
 
         horizontalLayout_8->addLayout(verticalLayout_9);
 
-        line = new QFrame(centralWidget);
-        line->setObjectName(QString::fromUtf8("line"));
-        line->setFrameShape(QFrame::VLine);
-        line->setFrameShadow(QFrame::Sunken);
-
-        horizontalLayout_8->addWidget(line);
-
 
         verticalLayout_10->addLayout(horizontalLayout_8);
 
@@ -228,6 +255,16 @@ public:
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuEdit = new QMenu(menuBar);
         menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
+        menuPlayers = new QMenu(menuEdit);
+        menuPlayers->setObjectName(QString::fromUtf8("menuPlayers"));
+        menuPlayer_List = new QMenu(menuPlayers);
+        menuPlayer_List->setObjectName(QString::fromUtf8("menuPlayer_List"));
+        menuScenes = new QMenu(menuEdit);
+        menuScenes->setObjectName(QString::fromUtf8("menuScenes"));
+        menuVideo = new QMenu(menuBar);
+        menuVideo->setObjectName(QString::fromUtf8("menuVideo"));
+        menuSpeed = new QMenu(menuVideo);
+        menuSpeed->setObjectName(QString::fromUtf8("menuSpeed"));
         AceVal->setMenuBar(menuBar);
         mainToolBar = new QToolBar(AceVal);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -238,10 +275,26 @@ public:
 
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuEdit->menuAction());
+        menuBar->addAction(menuVideo->menuAction());
         menuFile->addAction(actionOpen_File);
         menuFile->addAction(actionSave_File);
         menuFile->addSeparator();
         menuFile->addAction(actionClose);
+        menuEdit->addAction(menuPlayers->menuAction());
+        menuEdit->addAction(menuScenes->menuAction());
+        menuPlayers->addAction(actionInsert_Player);
+        menuPlayers->addAction(menuPlayer_List->menuAction());
+        menuPlayer_List->addAction(actionHome);
+        menuPlayer_List->addAction(actionAway);
+        menuScenes->addAction(actionInsert_Scene);
+        menuScenes->addAction(actionScenes_List);
+        menuVideo->addAction(menuSpeed->menuAction());
+        menuVideo->addAction(actionProperties);
+        menuVideo->addSeparator();
+        menuVideo->addAction(actionPlay);
+        menuVideo->addAction(actionPause);
+        menuVideo->addAction(actionStop);
+        menuSpeed->addAction(actionFrame_by_frame);
 
         retranslateUi(AceVal);
 
@@ -252,8 +305,22 @@ public:
     {
         AceVal->setWindowTitle(QApplication::translate("AceVal", "AceVal", 0, QApplication::UnicodeUTF8));
         actionOpen_File->setText(QApplication::translate("AceVal", "Open File", 0, QApplication::UnicodeUTF8));
+        actionOpen_File->setShortcut(QApplication::translate("AceVal", "Ctrl+Shift+O", 0, QApplication::UnicodeUTF8));
         actionSave_File->setText(QApplication::translate("AceVal", "Recent Files", 0, QApplication::UnicodeUTF8));
         actionClose->setText(QApplication::translate("AceVal", "Close", 0, QApplication::UnicodeUTF8));
+        actionFrame_by_frame->setText(QApplication::translate("AceVal", "Frame by frame", 0, QApplication::UnicodeUTF8));
+        actionPlay->setText(QApplication::translate("AceVal", "Play", 0, QApplication::UnicodeUTF8));
+        actionPlay->setShortcut(QApplication::translate("AceVal", "Ctrl+Shift+S", 0, QApplication::UnicodeUTF8));
+        actionPause->setText(QApplication::translate("AceVal", "Pause", 0, QApplication::UnicodeUTF8));
+        actionPause->setShortcut(QApplication::translate("AceVal", "Ctrl+Shift+P", 0, QApplication::UnicodeUTF8));
+        actionStop->setText(QApplication::translate("AceVal", "Stop", 0, QApplication::UnicodeUTF8));
+        actionStop->setShortcut(QApplication::translate("AceVal", "Ctrl+Shift+S", 0, QApplication::UnicodeUTF8));
+        actionProperties->setText(QApplication::translate("AceVal", "Properties", 0, QApplication::UnicodeUTF8));
+        actionInsert_Player->setText(QApplication::translate("AceVal", "Insert Player", 0, QApplication::UnicodeUTF8));
+        actionInsert_Scene->setText(QApplication::translate("AceVal", "Insert Scene", 0, QApplication::UnicodeUTF8));
+        actionScenes_List->setText(QApplication::translate("AceVal", "Scenes List", 0, QApplication::UnicodeUTF8));
+        actionHome->setText(QApplication::translate("AceVal", "Home", 0, QApplication::UnicodeUTF8));
+        actionAway->setText(QApplication::translate("AceVal", "Away", 0, QApplication::UnicodeUTF8));
         label_11->setText(QApplication::translate("AceVal", "Current Frame:", 0, QApplication::UnicodeUTF8));
         label_12->setText(QApplication::translate("AceVal", "Speed:", 0, QApplication::UnicodeUTF8));
         toolButton_3->setText(QApplication::translate("AceVal", "...", 0, QApplication::UnicodeUTF8));
@@ -261,6 +328,11 @@ public:
         toolButton_5->setText(QApplication::translate("AceVal", "...", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("AceVal", "File", 0, QApplication::UnicodeUTF8));
         menuEdit->setTitle(QApplication::translate("AceVal", "Edit", 0, QApplication::UnicodeUTF8));
+        menuPlayers->setTitle(QApplication::translate("AceVal", "Players", 0, QApplication::UnicodeUTF8));
+        menuPlayer_List->setTitle(QApplication::translate("AceVal", "Player List", 0, QApplication::UnicodeUTF8));
+        menuScenes->setTitle(QApplication::translate("AceVal", "Scenes", 0, QApplication::UnicodeUTF8));
+        menuVideo->setTitle(QApplication::translate("AceVal", "Video", 0, QApplication::UnicodeUTF8));
+        menuSpeed->setTitle(QApplication::translate("AceVal", "Speed", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

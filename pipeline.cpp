@@ -1,5 +1,5 @@
 #include "pipeline.h"
-
+#include <iostream>
 /*
  *Constructor:
  *  Arguments:
@@ -29,7 +29,9 @@ pipeline::pipeline(unsigned long WinID, const char *Filename)
     gst_element_link(source, DecDem);
     gst_element_link_many(video_queue,conv,sink,NULL);
     g_signal_connect(DecDem, "pad-added", G_CALLBACK(on_pad_added), video_queue);
-    gst_element_set_state(pipeline1, GST_STATE_READY);
+    if(GST_STATE_CHANGE_SUCCESS != gst_element_set_state(pipeline1, GST_STATE_READY)){
+        g_print("Pipeline problem initializing pipeline");
+    }
 }
 
 /*
@@ -39,7 +41,10 @@ pipeline::pipeline(unsigned long WinID, const char *Filename)
  */
 void pipeline::SetPlaying(){
     gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(sink), WinID_pipe);
-    gst_element_set_state(pipeline1, GST_STATE_PLAYING);
+    GstStateChangeReturn prueba = gst_element_set_state(pipeline1, GST_STATE_PLAYING);
+    if(GST_STATE_CHANGE_FAILURE == prueba){
+        g_print("Pipeline problem stablishing window");
+    }
 }
 
 /*
@@ -69,7 +74,6 @@ void pipeline::SetNull(){
 double pipeline::GetDuration(){
     GstFormat format = GST_FORMAT_TIME;
     gint64 MaxTime = -1;
-    gint64 current = -1;
     if (!gst_element_query_duration (pipeline1, &format, &MaxTime)) {
           g_printerr ("Could not query current duration.\n");
     } else {
@@ -106,7 +110,25 @@ void pipeline::ChangeSpeed(int value){
     send_seek_event(ValPer,sink,pipeline1);
 }
 
+void pipeline::ProveMethod(){
+    GstPad *ProvePad = gst_element_get_static_pad(sink,"sink");
+    GstCaps *ProveCaps = gst_pad_get_negotiated_caps(ProvePad);
+    gint framerate_num, framerate_den;
+    const GstStructure *str;
 
+    str = gst_caps_get_structure(ProveCaps,0);
+    gst_structure_get_fraction(str,"framerate",&framerate_num,&framerate_den);
+    std::cout<<framerate_num<<std::endl;
+    std::cout<<framerate_den<<std::endl;
+}
+
+/*
+ *pipeline::~pipeline()
+ *  Arguments: none
+ *  Purpose:
+ *      To destroy the pipeline and avoid memory leaks in the program.
+ */
 pipeline::~pipeline(){
         gst_object_unref (GST_OBJECT (pipeline1));
 }
+

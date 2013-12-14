@@ -84,7 +84,7 @@ void AceVal::on_toolButton_4_clicked()
  */
 void AceVal::on_toolButton_5_clicked()
 {
-    Pipeline->SetNull();
+    Pipeline->ProveMethod();
 }
 
 /*AceVal::on_spinBox_2_valueChanged
@@ -138,45 +138,6 @@ void AceVal::mouseMoveEvent(QMouseEvent *event){
     int y = (event->pos()).y()-ui->frame_7->pos().y();
     if(0<=x && x<ui->frame_7->width() && 0<=y && y<ui->frame_7->height()){
         std::cout<<x<<","<<y<<std::endl;
-    }
-}
-
-void AceVal::keyPressEvent(QKeyEvent * event){
-    switch(event->key()){
-        case 16777248:
-            ShiftPressed = true;
-            break;
-        case 'S':
-            if(ShiftPressed){
-                Pipeline->SetPaused();
-                CreateScene();
-                Pipeline->SetPlaying();
-            }
-            break;
-        case 'A':
-            if(ShiftPressed)
-            {
-                Pipeline->SetPaused();
-                AddPlayer();
-                Pipeline->SetPlaying();
-            }
-            break;
-        case 'P':
-            if(ShiftPressed)
-            {
-                Pipeline->SetPaused();
-                ChoosePlayer();
-                Pipeline->SetPlaying();
-            }
-            break;
-        default:
-            break;
-    }
-}
-
-void AceVal::keyReleaseEvent(QKeyEvent *event){
-    if(event->key()==16777248){
-        ShiftPressed = false;
     }
 }
 
