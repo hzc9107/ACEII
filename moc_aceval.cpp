@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'aceval.h'
 **
-** Created: Mon Dec 16 22:43:38 2013
+** Created: Mon Dec 16 23:30:34 2013
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_AceVal[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      18,   14, // methods
+      19,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -51,6 +51,7 @@ static const uint qt_meta_data_AceVal[] = {
      361,  354,    7,    7, 0x08,
      384,  354,    7,    7, 0x08,
      416,  403,    7,    7, 0x08,
+     442,    7,    7,    7, 0x08,
 
        0        // eod
 };
@@ -69,6 +70,7 @@ static const char qt_meta_stringdata_AceVal[] = {
     "firstTimer()\0Timer()\0result\0"
     "ResultConnection(bool)\0openFailedDB(bool)\0"
     "result,Error\0queryResult(bool,QString)\0"
+    "selectPlayer()\0"
 };
 
 void AceVal::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -95,6 +97,7 @@ void AceVal::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 15: _t->ResultConnection((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 16: _t->openFailedDB((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 17: _t->queryResult((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
+        case 18: _t->selectPlayer(); break;
         default: ;
         }
     }
@@ -132,9 +135,9 @@ int AceVal::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 18)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 18;
+        _id -= 19;
     }
     return _id;
 }

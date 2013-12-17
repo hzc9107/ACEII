@@ -14,15 +14,16 @@ class PlayersControl : public QDialog
     Q_OBJECT
     
 public:
-    explicit PlayersControl(QWidget *parent = 0, QVector<Player> * = 0, QVector<int>* = 0);
+    explicit PlayersControl(QVector<Player> &, QWidget *parent = 0);
     ~PlayersControl();
-    
+
+private slots:
+    void addPlayer();
+
 private:
     Ui::PlayersControl *ui;
-    QVectorIterator<int> SceneIter;
     QVectorIterator<Player> PlayIter;
-    QVector<int> Scenes;
-    QVector<Player> Players;
+    QVector<Player> &Players;
 };
 
 #endif // PLAYERSCONTROL_H

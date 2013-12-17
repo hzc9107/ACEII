@@ -1,23 +1,36 @@
 #include "playerscontrol.h"
 #include "ui_playerscontrol.h"
 
-PlayersControl::PlayersControl(QWidget *parent, QVector<Player> *PlayersPtr,QVector<int> *ScenePlayers) :
+PlayersControl::PlayersControl(QVector<Player> &PlayersPtr, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PlayersControl),
-    SceneIter(*ScenePlayers),
-    PlayIter(*PlayersPtr)
+    PlayIter(PlayersPtr),
+    Players(PlayersPtr)
 {
     ui->setupUi(this);
-    ui->tableWidget->setRowCount(ScenePlayers->size());
-    ui->tableWidget->setColumnCount(3);
-    ui->tableWidget_2->setRowCount(PlayersPtr->size());
+    ui->tableWidget_2->setRowCount(PlayersPtr.size());
     ui->tableWidget_2->setColumnCount(3);
     int counter = 0;
-    while(SceneIter.hasNext()){
-        int temp = SceneIter.next();
-        ui->tableWidget->setItem(counter,0,new QTableWidgetItem(PlayersPtr->at(temp).Name));
-        ui->tableWidget->setItem(counter,1,new QTableWidgetItem(QString::number(PlayersPtr->at(temp).Number)));
-        ui->tableWidget->setItem(counter,2,new QTableWidgetItem(PlayersPtr->at(temp).Tag));
+    QStringList Jugadores;
+    Jugadores<<"Number"<<"Player"<<"Label";
+    ui->tableWidget_2->setHorizontalHeaderLabels(Jugadores);
+    for(int i = 0; i< ui->tableWidget_2->columnCount();++i){
+            ui->tableWidget_2->horizontalHeader()->setResizeMode(i,QHeaderView::Stretch);
+    }
+    while(PlayIter.hasNext()){
+        Player play = PlayIter.next();
+        ui->tableWidget_2->setItem(counter,0,new QTableWidgetItem(play.Name));
+        ui->tableWidget_2->setItem(counter,1,new QTableWidgetItem(play.Number));
+        ui->tableWidget_2->setItem(counter,2,new QTableWidgetItem(play.Tag));
+        counter++;
+    }
+}
+
+void PlayersControl::addPlayer(){
+    if(ui->radioButton->isChecked()){
+        Players.append( Player(ui->lineEdit->text(),"Away"+ui->lineEdit_2->text(),ui->lineEdit_2->text().toInt()));
+    } else {
+        Players.append(Player(ui->lineEdit->text(),"Home"+ui->lineEdit_2->text(),ui->lineEdit_2->text().toInt()));
     }
 }
 

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'playerscontrol.ui'
 **
-** Created: Mon Dec 16 22:43:31 2013
+** Created: Mon Dec 16 23:45:54 2013
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -20,7 +20,8 @@
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
-#include <QtGui/QSpacerItem>
+#include <QtGui/QPushButton>
+#include <QtGui/QRadioButton>
 #include <QtGui/QTabWidget>
 #include <QtGui/QTableWidget>
 #include <QtGui/QVBoxLayout>
@@ -33,9 +34,6 @@ class Ui_PlayersControl
 public:
     QVBoxLayout *verticalLayout;
     QTabWidget *tabWidget;
-    QWidget *tab;
-    QVBoxLayout *verticalLayout_2;
-    QTableWidget *tableWidget;
     QWidget *tab_2;
     QVBoxLayout *verticalLayout_3;
     QTableWidget *tableWidget_2;
@@ -43,9 +41,11 @@ public:
     QLabel *label;
     QLineEdit *lineEdit;
     QHBoxLayout *horizontalLayout_3;
+    QRadioButton *radioButton_2;
+    QRadioButton *radioButton;
     QLabel *label_2;
     QLineEdit *lineEdit_2;
-    QSpacerItem *horizontalSpacer;
+    QPushButton *pushButton;
     QDialogButtonBox *buttonBox;
 
     void setupUi(QDialog *PlayersControl)
@@ -57,16 +57,6 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         tabWidget = new QTabWidget(PlayersControl);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tab = new QWidget();
-        tab->setObjectName(QString::fromUtf8("tab"));
-        verticalLayout_2 = new QVBoxLayout(tab);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        tableWidget = new QTableWidget(tab);
-        tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
-
-        verticalLayout_2->addWidget(tableWidget);
-
-        tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
         verticalLayout_3 = new QVBoxLayout(tab_2);
@@ -102,6 +92,16 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        radioButton_2 = new QRadioButton(PlayersControl);
+        radioButton_2->setObjectName(QString::fromUtf8("radioButton_2"));
+
+        horizontalLayout_3->addWidget(radioButton_2);
+
+        radioButton = new QRadioButton(PlayersControl);
+        radioButton->setObjectName(QString::fromUtf8("radioButton"));
+
+        horizontalLayout_3->addWidget(radioButton);
+
         label_2 = new QLabel(PlayersControl);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         sizePolicy.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
@@ -111,7 +111,7 @@ public:
 
         lineEdit_2 = new QLineEdit(PlayersControl);
         lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
-        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Fixed);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(lineEdit_2->sizePolicy().hasHeightForWidth());
@@ -120,12 +120,13 @@ public:
 
         horizontalLayout_3->addWidget(lineEdit_2);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_3->addItem(horizontalSpacer);
-
 
         verticalLayout->addLayout(horizontalLayout_3);
+
+        pushButton = new QPushButton(PlayersControl);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+
+        verticalLayout->addWidget(pushButton);
 
         buttonBox = new QDialogButtonBox(PlayersControl);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
@@ -148,10 +149,12 @@ public:
     void retranslateUi(QDialog *PlayersControl)
     {
         PlayersControl->setWindowTitle(QApplication::translate("PlayersControl", "Dialog", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("PlayersControl", "Scene", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("PlayersControl", "Players", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("PlayersControl", "Player:", 0, QApplication::UnicodeUTF8));
+        radioButton_2->setText(QApplication::translate("PlayersControl", "Home", 0, QApplication::UnicodeUTF8));
+        radioButton->setText(QApplication::translate("PlayersControl", "Away", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("PlayersControl", "Number:", 0, QApplication::UnicodeUTF8));
+        pushButton->setText(QApplication::translate("PlayersControl", "Add Player", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

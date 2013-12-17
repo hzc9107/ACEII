@@ -66,6 +66,7 @@ void AceVal::ConnectMenu(){
     connect(ui->actionConnect,SIGNAL(triggered()),this,SLOT(connectDB()));
     connect(ui->actionNew_DB,SIGNAL(triggered()),this,SLOT(newDB()));
     connect(ui->actionOpen_DB,SIGNAL(triggered()),this,SLOT(openDB()));
+    connect(ui->actionSelect_Player,SIGNAL(triggered()),this,SLOT(selectPlayer()));
     connect(&Time, SIGNAL(timeout()),this,SLOT(Timer()));
     connect(this,SIGNAL(Connect(QString,QString,QString)),thread1,SLOT(connectDB(QString,QString,QString)));
     connect(thread1,SIGNAL(connected(bool)),this,SLOT(ResultConnection(bool)));
@@ -307,17 +308,16 @@ void AceVal::CreateScene(){
     }
 }
 
-void AceVal::AddPlayer(){
+void AceVal::selectPlayer(){
     Pipeline->SetPaused();
-    PlayerDialog Dialog(this);
+    PlayersControl Dialog(Players,this);
     if(Dialog.exec() == QDialog::Accepted){
-        Player player(Dialog.GetName(), Dialog.GetTeam() + Dialog.GetNum(),Dialog.GetNum().toInt());
-        if(Players.isEmpty() || (!Players.contains(player)))
-            Players << player;
+
+   //     if(Players.isEmpty() || (!Players.contains(player)))
+     //       Players << player;
     }
-    Pipeline->SetPlaying();
 }
 
 void AceVal::ChoosePlayer(){
-    PlayersControl Dialog(this,&Players, &Scenes[0].Players);
+   // PlayersControl Dialog(this,&Players, &Scenes[0].Players);
 }

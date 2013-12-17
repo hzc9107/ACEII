@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     playerscontrol.cpp \
     dbconnection.cpp \
     newdb.cpp \
-    dbthread.cpp
+    dbthread.cpp \
+    dialog.cpp
 
 HEADERS  += aceval.h \
     pipeline.h \
@@ -32,11 +33,13 @@ HEADERS  += aceval.h \
     playerscontrol.h \
     dbconnection.h \
     newdb.h \
-    dbthread.h
+    dbthread.h \
+    dialog.h
 
 FORMS    += aceval.ui \
     scenedialog.ui \
     playerdialog.ui \
     playerscontrol.ui \
     dbconnection.ui \
-    newdb.ui
+    newdb.ui \
+    dialog.ui

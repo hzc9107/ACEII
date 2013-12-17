@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'scenedialog.ui'
 **
-** Created: Mon Dec 16 22:43:31 2013
+** Created: Mon Dec 16 23:45:54 2013
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

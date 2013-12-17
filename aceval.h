@@ -64,7 +64,7 @@ private slots:
     void ResultConnection(bool result);
     void openFailedDB(bool result);
     void queryResult(bool result, QString Error);
-
+    void selectPlayer();
 private:
     bool firstTime;
     int firstFrame, nextFramePos;
@@ -82,7 +82,6 @@ private:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void CreateScene();
-    void AddPlayer();
     void ChoosePlayer();
     void StoringInfo(QVector<Frame> *framesToInsert);
 };

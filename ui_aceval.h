@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'aceval.ui'
 **
-** Created: Mon Dec 16 22:43:31 2013
+** Created: Mon Dec 16 23:45:54 2013
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -54,6 +54,7 @@ public:
     QAction *actionOpen_DB;
     QAction *actionNew_DB;
     QAction *actionActivate;
+    QAction *actionSelect_Player;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout_10;
     QHBoxLayout *horizontalLayout_5;
@@ -131,6 +132,8 @@ public:
         actionNew_DB->setObjectName(QString::fromUtf8("actionNew_DB"));
         actionActivate = new QAction(AceVal);
         actionActivate->setObjectName(QString::fromUtf8("actionActivate"));
+        actionSelect_Player = new QAction(AceVal);
+        actionSelect_Player->setObjectName(QString::fromUtf8("actionSelect_Player"));
         centralWidget = new QWidget(AceVal);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         verticalLayout_10 = new QVBoxLayout(centralWidget);
@@ -313,8 +316,8 @@ public:
         menuPlayer_List->addAction(actionAway);
         menuScenes->addAction(actionInsert_Scene);
         menuScenes->addAction(actionScenes_List);
-        menuVideo->addAction(actionActivate);
         menuVideo->addAction(menuSpeed->menuAction());
+        menuVideo->addAction(actionSelect_Player);
         menuVideo->addAction(actionProperties);
         menuVideo->addSeparator();
         menuVideo->addAction(actionPlay);
@@ -360,6 +363,8 @@ public:
         actionOpen_DB->setText(QApplication::translate("AceVal", "Open DB", 0, QApplication::UnicodeUTF8));
         actionNew_DB->setText(QApplication::translate("AceVal", "New DB", 0, QApplication::UnicodeUTF8));
         actionActivate->setText(QApplication::translate("AceVal", "Activate", 0, QApplication::UnicodeUTF8));
+        actionSelect_Player->setText(QApplication::translate("AceVal", "Select Player", 0, QApplication::UnicodeUTF8));
+        actionSelect_Player->setShortcut(QApplication::translate("AceVal", "Shift+P", 0, QApplication::UnicodeUTF8));
         label_11->setText(QApplication::translate("AceVal", "Current Frame:", 0, QApplication::UnicodeUTF8));
         label_12->setText(QApplication::translate("AceVal", "Speed:", 0, QApplication::UnicodeUTF8));
         toolButton_3->setText(QApplication::translate("AceVal", "...", 0, QApplication::UnicodeUTF8));

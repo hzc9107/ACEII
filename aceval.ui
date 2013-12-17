@@ -265,8 +265,8 @@
      </property>
      <addaction name="actionFrame_by_frame"/>
     </widget>
-    <addaction name="actionActivate"/>
     <addaction name="menuSpeed"/>
+    <addaction name="actionSelect_Player"/>
     <addaction name="actionProperties"/>
     <addaction name="separator"/>
     <addaction name="actionPlay"/>
@@ -409,6 +409,14 @@
   <action name="actionActivate">
    <property name="text">
     <string>Activate</string>
+   </property>
+  </action>
+  <action name="actionSelect_Player">
+   <property name="text">
+    <string>Select Player</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+P</string>
    </property>
   </action>
  </widget>
