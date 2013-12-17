@@ -4,20 +4,34 @@
 #include "scenedialog.h"
 #include "playerdialog.h"
 #include "playerscontrol.h"
+#include "dbconnection.h"
+#include "newdb.h"
 #include <iostream>
 #include <QFileDialog>
 #include <QMouseEvent>
+#include <QMessageBox>
+#include <QDebug>
 
 AceVal::AceVal(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::AceVal)
+    ui(new Ui::AceVal),
+    DBConnected(false),
+    Time(this),
+    firstTime(true),
+    firstFrame(0),
+    nextFramePos(0),
+    DBOpened(false)
 {
+    thread = new QThread;
+    thread1 = new DBthread;
     ui->setupUi(this);
     CusLay();
     GstIFace(NULL);
     ConnectMenu();
     ShiftPressed = false;
-
+    FramesInf = new QVector<Frame>(500);
+    thread1->moveToThread(thread);
+    thread->start();
 }
 
 /*AceVal::CusLay:
@@ -29,7 +43,6 @@ void AceVal::CusLay(void) {
 	ui->toolButton_3->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
     ui->toolButton_4->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
     ui->toolButton_5->setIcon(style()->standardIcon(QStyle::SP_MediaStop));
-
 }
 
 /*Aceval::GstIFace:
@@ -50,10 +63,109 @@ void AceVal::GstIFace(const char *filename){
 */
 void AceVal::ConnectMenu(){
     connect(ui->actionOpen_File,SIGNAL(triggered()),this,SLOT(OnOpen()));
+    connect(ui->actionConnect,SIGNAL(triggered()),this,SLOT(connectDB()));
+    connect(ui->actionNew_DB,SIGNAL(triggered()),this,SLOT(newDB()));
+    connect(ui->actionOpen_DB,SIGNAL(triggered()),this,SLOT(openDB()));
+    connect(&Time, SIGNAL(timeout()),this,SLOT(Timer()));
+    connect(this,SIGNAL(Connect(QString,QString,QString)),thread1,SLOT(connectDB(QString,QString,QString)));
+    connect(thread1,SIGNAL(connected(bool)),this,SLOT(ResultConnection(bool)));
+    connect(this,SIGNAL(openThreadDB(QString)),thread1,SLOT(openDB(QString)));
+    connect(thread1,SIGNAL(openDBFail(bool)),this,SLOT(openFailedDB(bool)));
+    connect(this,SIGNAL(newDBCreate(QString,QString)),thread1,SLOT(newDB(QString,QString)));
+    connect(this,SIGNAL(storeInfo(QVector<Frame>*)),thread1,SLOT(storeInfor(QVector<Frame>*)));
+}
+
+void AceVal::openFailedDB(bool result){
+    if(result){
+        DBOpened = true;
+    } else {
+    QMessageBox msg;
+    msg.setText("No DB Found");
+    msg.setInformativeText("Correct the parameters or create a new DB");
+    msg.setIcon(QMessageBox::Warning);
+    msg.exec();
+    }
+}
+
+void AceVal::ResultConnection(bool result){
+    qDebug()<<result;
+    DBConnected = result ? true : false;
+    if(!result){
+        QMessageBox msg;
+        msg.setText("Connection not created");
+        msg.setInformativeText("Check the parameters");
+        msg.setIcon(QMessageBox::Warning);
+        msg.exec();
+    }
+}
+
+void AceVal::queryResult(bool result, QString Error){
+    if(!result){
+        QMessageBox msg;
+        msg.setText(Error);
+        msg.setIcon(QMessageBox::Warning);
+        msg.exec();
+    } else {
+        DBOpened = true;
+    }
+}
+
+/*AceVal::openDB:
+ *  Arguments: None
+ *  Purpose: Callback for opening Databases
+ */
+void AceVal::openDB(){
+    if(DBConnected){
+        NewDB dialog(this);
+        if(dialog.exec() == QDialog::Accepted){
+            QString DBname = dialog.getHome()+"_"+dialog.getAway()+"_"+dialog.getDay()+"_"+dialog.getMonth()+"_"+dialog.getYear();
+            DBname = DBname.toUpper();
+            emit openThreadDB("use " + DBname);
+        }
+    } else{
+        QMessageBox msg;
+        msg.setText("There is no DB driver connected");
+        msg.setInformativeText("Please connect to a DB driver befor creating a new DB");
+        msg.setIcon(QMessageBox::Information);
+        msg.exec();
+    }
+}
+
+/*AceVal::newDB:
+ *  Arguments:None
+ *  Purpose:To create a new database for a new video.
+ */
+void AceVal::newDB(){
+    if(DBConnected){
+        NewDB dialog(this);
+        if(dialog.exec() == QDialog::Accepted){
+            QString DBname = dialog.getHome()+"_"+dialog.getAway()+"_"+dialog.getDay()+"_"+dialog.getMonth()+"_"+dialog.getYear();
+            DBname = DBname.toUpper();
+            emit newDBCreate("create database " + DBname, DBname);
+        }
+    } else{
+        QMessageBox msg;
+        msg.setText("There is no DB driver connected");
+        msg.setInformativeText("Please connect to a DB driver befor creating a new DB");
+        msg.setIcon(QMessageBox::Information);
+        msg.exec();
+    }
+}
+
+/*AceVal::connectDB:
+ *  Arguments: None
+ *  Purpose: Connect to the DB in the server
+ */
+void AceVal::connectDB(){
+    DBConnection dialog(this);
+    if(dialog.exec() == QDialog::Accepted){
+        emit Connect(dialog.getHostName(),dialog.getUser(),dialog.getPassword());
+    }
 }
 
 AceVal::~AceVal()
 {
+
     delete ui;
 }
 
@@ -64,8 +176,25 @@ AceVal::~AceVal()
 void AceVal::on_toolButton_3_clicked()
 {
     Pipeline->SetPlaying();
+    if(firstTime){
+        firstTime = false;
+        QTimer::singleShot(100,this,SLOT(firstTimer()));
+    }
 }
 
+void AceVal::firstTimer(){
+    Pipeline->ChangeSpeed(99);
+    Pipeline->ChangeSpeed(100);
+    Pipeline->ProveMethod();
+    Miliseconds = 1000.0f * (float) Pipeline->FrameRate_Num / (float) Pipeline->FrameRate_Den;
+    Time.start(Miliseconds);
+}
+
+void AceVal::Timer(){
+    double StartTime = Pipeline->GetPosition();
+    firstFrame = StartTime * 1000 / Miliseconds;
+
+}
 
 /*AceVal::on_toolButton_4_clicked
  *  Arguments: None
@@ -74,8 +203,6 @@ void AceVal::on_toolButton_3_clicked()
 void AceVal::on_toolButton_4_clicked()
 {
     Pipeline->SetPaused();
-    std::cout<<"Duration is: "<<Pipeline->GetDuration()<<std::endl;
-    std::cout<<"Duration is: "<<Pipeline->GetPosition()<<std::endl;
 }
 
 /*AceVal::on_toolButton_5_clicked
@@ -84,7 +211,9 @@ void AceVal::on_toolButton_4_clicked()
  */
 void AceVal::on_toolButton_5_clicked()
 {
-    Pipeline->ProveMethod();
+    Pipeline->SetNull();
+    firstTime = true;
+    Time.stop();
 }
 
 /*AceVal::on_spinBox_2_valueChanged
@@ -118,26 +247,55 @@ void AceVal::OnOpen(){
     QByteArray Bit8Filename = filename.toLocal8Bit();
     const char *filename_char = Bit8Filename.data();
     GstIFace(filename_char);
+    firstTime = true;
 }
 
 /*AceVal::mousePressEvent
  *  Arguments:
  */
 void AceVal::mousePressEvent(QMouseEvent *event){
-    int x = (event->pos()).x()-ui->frame_7->pos().x();
-    int y = (event->pos()).y()-ui->frame_7->pos().y();
-    if(0<=x && x<ui->frame_7->width() && 0<=y && y<ui->frame_7->height()){
-        if (event->button() == Qt::LeftButton) {
-            std::cout<<x<<","<<y<<std::endl;
-         }
-    }
+     if(DBOpened && DBConnected){
+        int x = (event->pos()).x()-ui->frame_7->pos().x();
+        int y = (event->pos()).y()-ui->frame_7->pos().y();
+        if(0<=x && x<ui->frame_7->width() && 0<=y && y<ui->frame_7->height()){
+            if (event->button() == Qt::LeftButton) {
+                FramesInf->operator [](nextFramePos++) = Frame(firstFrame,1,x/ui->frame_7->width(),y/ui->frame_7->height());
+                if(nextFramePos == 500){
+                    nextFramePos = 0;
+                    StoringInfo(FramesInf);
+                    FramesInf = new QVector<Frame>(500);
+                }
+             }
+        }
+    } else {
+                 QMessageBox msg;
+                 msg.setText("Open the database or set to yaml");
+                 msg.setIcon(QMessageBox::Warning);
+                 msg.exec();
+     }
+}
+
+void AceVal::StoringInfo(QVector<Frame> *framesToInsert){
+    emit storeInfo(framesToInsert);
 }
 
 void AceVal::mouseMoveEvent(QMouseEvent *event){
-    int x = (event->pos()).x()-ui->frame_7->pos().x();
-    int y = (event->pos()).y()-ui->frame_7->pos().y();
-    if(0<=x && x<ui->frame_7->width() && 0<=y && y<ui->frame_7->height()){
-        std::cout<<x<<","<<y<<std::endl;
+    if(DBOpened && DBConnected){
+        int x = (event->pos()).x()-ui->frame_7->pos().x();
+        int y = (event->pos()).y()-ui->frame_7->pos().y();
+        if(0<=x && x<ui->frame_7->width() && 0<=y && y<ui->frame_7->height()){
+            FramesInf->operator [](nextFramePos++) = Frame(firstFrame,1,(double)x/(double)ui->frame_7->width(),(double)y/(double)ui->frame_7->height());
+            if(nextFramePos == 500){
+                nextFramePos = 0;
+                StoringInfo(FramesInf);
+                FramesInf = new QVector<Frame>(500);
+            }
+        }
+    } else {
+        QMessageBox msg;
+        msg.setText("Open the database or set to yaml");
+        msg.setIcon(QMessageBox::Warning);
+        msg.exec();
     }
 }
 
@@ -150,12 +308,14 @@ void AceVal::CreateScene(){
 }
 
 void AceVal::AddPlayer(){
+    Pipeline->SetPaused();
     PlayerDialog Dialog(this);
     if(Dialog.exec() == QDialog::Accepted){
         Player player(Dialog.GetName(), Dialog.GetTeam() + Dialog.GetNum(),Dialog.GetNum().toInt());
         if(Players.isEmpty() || (!Players.contains(player)))
             Players << player;
     }
+    Pipeline->SetPlaying();
 }
 
 void AceVal::ChoosePlayer(){

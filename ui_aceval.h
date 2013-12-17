@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'aceval.ui'
 **
-** Created: Sat Dec 14 15:37:18 2013
+** Created: Mon Dec 16 22:43:31 2013
 **      by: Qt User Interface Compiler version 4.8.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -48,6 +48,12 @@ public:
     QAction *actionScenes_List;
     QAction *actionHome;
     QAction *actionAway;
+    QAction *actionConnect;
+    QAction *actionMySQL;
+    QAction *actionYAML;
+    QAction *actionOpen_DB;
+    QAction *actionNew_DB;
+    QAction *actionActivate;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout_10;
     QHBoxLayout *horizontalLayout_5;
@@ -77,6 +83,8 @@ public:
     QMenu *menuScenes;
     QMenu *menuVideo;
     QMenu *menuSpeed;
+    QMenu *menuDatabase;
+    QMenu *menuUse;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -111,6 +119,18 @@ public:
         actionHome->setObjectName(QString::fromUtf8("actionHome"));
         actionAway = new QAction(AceVal);
         actionAway->setObjectName(QString::fromUtf8("actionAway"));
+        actionConnect = new QAction(AceVal);
+        actionConnect->setObjectName(QString::fromUtf8("actionConnect"));
+        actionMySQL = new QAction(AceVal);
+        actionMySQL->setObjectName(QString::fromUtf8("actionMySQL"));
+        actionYAML = new QAction(AceVal);
+        actionYAML->setObjectName(QString::fromUtf8("actionYAML"));
+        actionOpen_DB = new QAction(AceVal);
+        actionOpen_DB->setObjectName(QString::fromUtf8("actionOpen_DB"));
+        actionNew_DB = new QAction(AceVal);
+        actionNew_DB->setObjectName(QString::fromUtf8("actionNew_DB"));
+        actionActivate = new QAction(AceVal);
+        actionActivate->setObjectName(QString::fromUtf8("actionActivate"));
         centralWidget = new QWidget(AceVal);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         verticalLayout_10 = new QVBoxLayout(centralWidget);
@@ -265,6 +285,10 @@ public:
         menuVideo->setObjectName(QString::fromUtf8("menuVideo"));
         menuSpeed = new QMenu(menuVideo);
         menuSpeed->setObjectName(QString::fromUtf8("menuSpeed"));
+        menuDatabase = new QMenu(menuBar);
+        menuDatabase->setObjectName(QString::fromUtf8("menuDatabase"));
+        menuUse = new QMenu(menuDatabase);
+        menuUse->setObjectName(QString::fromUtf8("menuUse"));
         AceVal->setMenuBar(menuBar);
         mainToolBar = new QToolBar(AceVal);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -276,6 +300,7 @@ public:
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuEdit->menuAction());
         menuBar->addAction(menuVideo->menuAction());
+        menuBar->addAction(menuDatabase->menuAction());
         menuFile->addAction(actionOpen_File);
         menuFile->addAction(actionSave_File);
         menuFile->addSeparator();
@@ -288,6 +313,7 @@ public:
         menuPlayer_List->addAction(actionAway);
         menuScenes->addAction(actionInsert_Scene);
         menuScenes->addAction(actionScenes_List);
+        menuVideo->addAction(actionActivate);
         menuVideo->addAction(menuSpeed->menuAction());
         menuVideo->addAction(actionProperties);
         menuVideo->addSeparator();
@@ -295,6 +321,13 @@ public:
         menuVideo->addAction(actionPause);
         menuVideo->addAction(actionStop);
         menuSpeed->addAction(actionFrame_by_frame);
+        menuDatabase->addAction(menuUse->menuAction());
+        menuDatabase->addSeparator();
+        menuDatabase->addAction(actionConnect);
+        menuDatabase->addAction(actionOpen_DB);
+        menuDatabase->addAction(actionNew_DB);
+        menuUse->addAction(actionMySQL);
+        menuUse->addAction(actionYAML);
 
         retranslateUi(AceVal);
 
@@ -321,6 +354,12 @@ public:
         actionScenes_List->setText(QApplication::translate("AceVal", "Scenes List", 0, QApplication::UnicodeUTF8));
         actionHome->setText(QApplication::translate("AceVal", "Home", 0, QApplication::UnicodeUTF8));
         actionAway->setText(QApplication::translate("AceVal", "Away", 0, QApplication::UnicodeUTF8));
+        actionConnect->setText(QApplication::translate("AceVal", "Connect", 0, QApplication::UnicodeUTF8));
+        actionMySQL->setText(QApplication::translate("AceVal", "MySQL", 0, QApplication::UnicodeUTF8));
+        actionYAML->setText(QApplication::translate("AceVal", "YAML", 0, QApplication::UnicodeUTF8));
+        actionOpen_DB->setText(QApplication::translate("AceVal", "Open DB", 0, QApplication::UnicodeUTF8));
+        actionNew_DB->setText(QApplication::translate("AceVal", "New DB", 0, QApplication::UnicodeUTF8));
+        actionActivate->setText(QApplication::translate("AceVal", "Activate", 0, QApplication::UnicodeUTF8));
         label_11->setText(QApplication::translate("AceVal", "Current Frame:", 0, QApplication::UnicodeUTF8));
         label_12->setText(QApplication::translate("AceVal", "Speed:", 0, QApplication::UnicodeUTF8));
         toolButton_3->setText(QApplication::translate("AceVal", "...", 0, QApplication::UnicodeUTF8));
@@ -331,8 +370,10 @@ public:
         menuPlayers->setTitle(QApplication::translate("AceVal", "Players", 0, QApplication::UnicodeUTF8));
         menuPlayer_List->setTitle(QApplication::translate("AceVal", "Player List", 0, QApplication::UnicodeUTF8));
         menuScenes->setTitle(QApplication::translate("AceVal", "Scenes", 0, QApplication::UnicodeUTF8));
-        menuVideo->setTitle(QApplication::translate("AceVal", "Video", 0, QApplication::UnicodeUTF8));
+        menuVideo->setTitle(QApplication::translate("AceVal", "Tracking", 0, QApplication::UnicodeUTF8));
         menuSpeed->setTitle(QApplication::translate("AceVal", "Speed", 0, QApplication::UnicodeUTF8));
+        menuDatabase->setTitle(QApplication::translate("AceVal", "Database", 0, QApplication::UnicodeUTF8));
+        menuUse->setTitle(QApplication::translate("AceVal", "Use", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

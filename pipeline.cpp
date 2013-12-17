@@ -1,5 +1,6 @@
 #include "pipeline.h"
 #include <iostream>
+#include <QDebug>
 /*
  *Constructor:
  *  Arguments:
@@ -113,13 +114,16 @@ void pipeline::ChangeSpeed(int value){
 void pipeline::ProveMethod(){
     GstPad *ProvePad = gst_element_get_static_pad(sink,"sink");
     GstCaps *ProveCaps = gst_pad_get_negotiated_caps(ProvePad);
-    gint framerate_num, framerate_den;
+    gint framerate_num = 0, framerate_den = 0;
     const GstStructure *str;
 
     str = gst_caps_get_structure(ProveCaps,0);
     gst_structure_get_fraction(str,"framerate",&framerate_num,&framerate_den);
-    std::cout<<framerate_num<<std::endl;
-    std::cout<<framerate_den<<std::endl;
+    if(framerate_den && framerate_num){
+        FrameRate_Num = framerate_den;
+        FrameRate_Den = framerate_num;
+    } else
+        qDebug()<<"No se pudo determinar el framerate";
 }
 
 /*

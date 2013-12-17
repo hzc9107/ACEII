@@ -257,7 +257,7 @@
    </widget>
    <widget class="QMenu" name="menuVideo">
     <property name="title">
-     <string>Video</string>
+     <string>Tracking</string>
     </property>
     <widget class="QMenu" name="menuSpeed">
      <property name="title">
@@ -265,6 +265,7 @@
      </property>
      <addaction name="actionFrame_by_frame"/>
     </widget>
+    <addaction name="actionActivate"/>
     <addaction name="menuSpeed"/>
     <addaction name="actionProperties"/>
     <addaction name="separator"/>
@@ -272,9 +273,27 @@
     <addaction name="actionPause"/>
     <addaction name="actionStop"/>
    </widget>
+   <widget class="QMenu" name="menuDatabase">
+    <property name="title">
+     <string>Database</string>
+    </property>
+    <widget class="QMenu" name="menuUse">
+     <property name="title">
+      <string>Use</string>
+     </property>
+     <addaction name="actionMySQL"/>
+     <addaction name="actionYAML"/>
+    </widget>
+    <addaction name="menuUse"/>
+    <addaction name="separator"/>
+    <addaction name="actionConnect"/>
+    <addaction name="actionOpen_DB"/>
+    <addaction name="actionNew_DB"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuVideo"/>
+   <addaction name="menuDatabase"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -360,6 +379,36 @@
   <action name="actionAway">
    <property name="text">
     <string>Away</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Connect</string>
+   </property>
+  </action>
+  <action name="actionMySQL">
+   <property name="text">
+    <string>MySQL</string>
+   </property>
+  </action>
+  <action name="actionYAML">
+   <property name="text">
+    <string>YAML</string>
+   </property>
+  </action>
+  <action name="actionOpen_DB">
+   <property name="text">
+    <string>Open DB</string>
+   </property>
+  </action>
+  <action name="actionNew_DB">
+   <property name="text">
+    <string>New DB</string>
+   </property>
+  </action>
+  <action name="actionActivate">
+   <property name="text">
+    <string>Activate</string>
    </property>
   </action>
  </widget>

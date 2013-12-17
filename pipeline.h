@@ -17,6 +17,7 @@ public:
     double GetPosition(void);
     void ChangeSpeed(int value);
     void ProveMethod();
+    int FrameRate_Den, FrameRate_Num;
 private:
     GMainLoop *loop;
     GstElement *pipeline1, *source, *DecDem, *conv, *sink, *video_queue, *vrate, *filter;

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'playerdialog.h'
 **
-** Created: Sat Dec 14 15:37:22 2013
+** Created: Mon Dec 16 22:43:39 2013
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.3)
 **
 ** WARNING! All changes made in this file will be lost!
