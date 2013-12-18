@@ -20,7 +20,7 @@ struct Frame{
 
 #include <QObject>
 #include <QtSql>
-
+#include "player.h"
 class DBthread : public QObject
 {
     Q_OBJECT
@@ -37,6 +37,7 @@ public slots:
     void openDB(QString query);
     void newDB(QString query, QString DBname);
     void storeInfor(QVector<Frame> *framesToInsert);
+    void storePlayers(int start,int end,QVector<Player> *players);
 private:
     QSqlDatabase db;
     bool result;

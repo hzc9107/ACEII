@@ -1,11 +1,12 @@
 #include "pipeline.h"
 #include <iostream>
 #include <QDebug>
-/*
- *Constructor:
- *  Arguments:
- *      @WinID: holds the value of the window identifier, in order to display the video in the given window.
- *  Purpose: To initialize the gstreamer interface for video playback.
+
+/*!
+ * \brief pipeline::pipeline
+ * \param WinID
+ * \param Filename
+ *  Constructor for the Pipeline, generates all the elements and links them together to form the pipeline
  */
 pipeline::pipeline(unsigned long WinID, const char *Filename)
 {
@@ -35,10 +36,9 @@ pipeline::pipeline(unsigned long WinID, const char *Filename)
     }
 }
 
-/*
- *pipeline::SetPlaying:
- *  Arguments: None
- *  Purpose: To set the video playing, and realocate the frame winID to avoid video display in a separate window when beginning from STOP (STATE_NULL)
+/*!
+ * \brief pipeline::SetPlaying
+ *  Sets the Pipeline to playing.
  */
 void pipeline::SetPlaying(){
     gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(sink), WinID_pipe);
@@ -48,29 +48,29 @@ void pipeline::SetPlaying(){
     }
 }
 
-/*
- *pipeline::SetPaused:
- *  Arguments: None
- *  Purpose: To set the video in pause state
+/*!
+ * \brief pipeline::SetPaused
+ *
+ *  Sets the pipeline to paused state.
  */
 void pipeline::SetPaused(){
     gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(sink), WinID_pipe);
     gst_element_set_state(pipeline1, GST_STATE_PAUSED);
 }
 
-/*
- *pipeline::SetNull:
- *  Arguments:None
- *  Purpose: To stop the video and set it to Null state
+/*!
+ * \brief pipeline::SetNull
+ *  Sets the pipeline to null state
  */
 void pipeline::SetNull(){
     gst_element_set_state(pipeline1, GST_STATE_NULL);
 }
 
-/*
- *pipeline::GetDuration:
- *  Arguments:None
- *  Purpose: To query the duration of a video stream in seconds
+/*!
+ * \brief pipeline::GetDuration
+ * \return the duration of the video
+ *
+ *  Function to get the duration of a video.
  */
 double pipeline::GetDuration(){
     GstFormat format = GST_FORMAT_TIME;
@@ -84,9 +84,11 @@ double pipeline::GetDuration(){
     return 0;
 }
 
-/*pipeline::GetPosition:
- *  Arguments: None
- *  Purpose: To query the actual position of the video stream
+/*!
+ * \brief pipeline::GetPosition
+ * \return the current time position of the video.
+ *
+ *  Returns the current position of the video.
  */
 double pipeline::GetPosition(){
     GstFormat format = GST_FORMAT_TIME;
@@ -99,18 +101,21 @@ double pipeline::GetPosition(){
     return 0;
 }
 
-/*
- *pipeline::ChangeSpeed:
- *  Arguments:
- *      @value: Percentage value of the rate that is desired
- *  Purpose:
- *      To modify the value of the playback speed of the video.
+/*!
+ * \brief pipeline::ChangeSpeed
+ * \param value
+ *
+ *  Changes the playback speed of the video.
  */
 void pipeline::ChangeSpeed(int value){
     double ValPer = (double) value/100;
     send_seek_event(ValPer,sink,pipeline1);
 }
 
+/*!
+ * \brief pipeline::ProveMethod
+ *  Gets the framerate of the video.
+ */
 void pipeline::ProveMethod(){
     GstPad *ProvePad = gst_element_get_static_pad(sink,"sink");
     GstCaps *ProveCaps = gst_pad_get_negotiated_caps(ProvePad);
@@ -126,11 +131,8 @@ void pipeline::ProveMethod(){
         qDebug()<<"No se pudo determinar el framerate";
 }
 
-/*
- *pipeline::~pipeline()
- *  Arguments: none
- *  Purpose:
- *      To destroy the pipeline and avoid memory leaks in the program.
+/*!
+ * \brief pipeline::~pipeline
  */
 pipeline::~pipeline(){
         gst_object_unref (GST_OBJECT (pipeline1));

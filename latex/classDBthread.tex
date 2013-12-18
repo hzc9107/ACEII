@@ -1,0 +1,173 @@
+\hypertarget{classDBthread}{\section{D\-Bthread Class Reference}
+\label{classDBthread}\index{D\-Bthread@{D\-Bthread}}
+}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classDBthread_a2dbcf7890c95b1fca26f9bd21d054e46}{connect\-D\-B} (Q\-String Host, Q\-String User, Q\-String Password)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classDBthread_a2dbcf7890c95b1fca26f9bd21d054e46}{D\-Bthread\-::connect\-D\-B}. \end{DoxyCompactList}\item 
+void \hyperlink{classDBthread_a355e688d4a6f590578f2c29f468b3ad0}{open\-D\-B} (Q\-String query)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classDBthread_a355e688d4a6f590578f2c29f468b3ad0}{D\-Bthread\-::open\-D\-B}. \end{DoxyCompactList}\item 
+void \hyperlink{classDBthread_a86757b487ce90e3589334d6f96dc6684}{new\-D\-B} (Q\-String query, Q\-String D\-Bname)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classDBthread_a86757b487ce90e3589334d6f96dc6684}{D\-Bthread\-::new\-D\-B}. \end{DoxyCompactList}\item 
+void \hyperlink{classDBthread_ad5e320be8718aa773eeab3303ceb9d07}{store\-Infor} (Q\-Vector$<$ \hyperlink{structFrame}{Frame} $>$ $\ast$frames\-To\-Insert)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classDBthread_ad5e320be8718aa773eeab3303ceb9d07}{D\-Bthread\-::store\-Infor}. \end{DoxyCompactList}\item 
+void \hyperlink{classDBthread_a37468e05639656f8a6d9f69a3937676e}{store\-Players} (int start, int end, Q\-Vector$<$ \hyperlink{classPlayer}{Player} $>$ $\ast$players)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classDBthread_a37468e05639656f8a6d9f69a3937676e}{D\-Bthread\-::store\-Players}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classDBthread_a7b9df87143f9f5d108a8b7ac59c83af0}{void {\bfseries connected} (bool is\-Connected)}\label{classDBthread_a7b9df87143f9f5d108a8b7ac59c83af0}
+
+\item 
+\hypertarget{classDBthread_ab7de01fe14f319807df639a50160f107}{void {\bfseries open\-D\-B\-Fail} (bool result)}\label{classDBthread_ab7de01fe14f319807df639a50160f107}
+
+\item 
+\hypertarget{classDBthread_ac905b36e66201d6b8bb99de32525a251}{void {\bfseries quer\-Result} (bool result, Q\-String Error)}\label{classDBthread_ac905b36e66201d6b8bb99de32525a251}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDBthread_aaaf33aa07a311b3fb1711b30de85a0b4}{D\-Bthread} (Q\-Object $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classDBthread_aaaf33aa07a311b3fb1711b30de85a0b4}{D\-Bthread\-::\-D\-Bthread}. \end{DoxyCompactList}\item 
+\hyperlink{classDBthread_a7efeaae535038f72e32a52f3e69f987c}{$\sim$\-D\-Bthread} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classDBthread_a7efeaae535038f72e32a52f3e69f987c}{D\-Bthread\-::$\sim$\-D\-Bthread}. \end{DoxyCompactList}\item 
+\hypertarget{classDBthread_a63cdd2ec0573009c2d28985a155e7a6a}{void {\bfseries run} ()}\label{classDBthread_a63cdd2ec0573009c2d28985a155e7a6a}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classDBthread_aaaf33aa07a311b3fb1711b30de85a0b4}{\index{D\-Bthread@{D\-Bthread}!D\-Bthread@{D\-Bthread}}
+\index{D\-Bthread@{D\-Bthread}!DBthread@{D\-Bthread}}
+\subsubsection[{D\-Bthread}]{\setlength{\rightskip}{0pt plus 5cm}D\-Bthread\-::\-D\-Bthread (
+\begin{DoxyParamCaption}
+\item[{Q\-Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{classDBthread_aaaf33aa07a311b3fb1711b30de85a0b4}
+
+
+\hyperlink{classDBthread_aaaf33aa07a311b3fb1711b30de85a0b4}{D\-Bthread\-::\-D\-Bthread}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Constructor for building the \hyperlink{classDBthread}{D\-Bthread}, initializes the db driver. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDBthread_a7efeaae535038f72e32a52f3e69f987c}{\index{D\-Bthread@{D\-Bthread}!$\sim$\-D\-Bthread@{$\sim$\-D\-Bthread}}
+\index{$\sim$\-D\-Bthread@{$\sim$\-D\-Bthread}!DBthread@{D\-Bthread}}
+\subsubsection[{$\sim$\-D\-Bthread}]{\setlength{\rightskip}{0pt plus 5cm}D\-Bthread\-::$\sim$\-D\-Bthread (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDBthread_a7efeaae535038f72e32a52f3e69f987c}
+
+
+\hyperlink{classDBthread_a7efeaae535038f72e32a52f3e69f987c}{D\-Bthread\-::$\sim$\-D\-Bthread}. 
+
+Destructor for the \hyperlink{classDBthread}{D\-Bthread} removes the db driver. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classDBthread_a2dbcf7890c95b1fca26f9bd21d054e46}{\index{D\-Bthread@{D\-Bthread}!connect\-D\-B@{connect\-D\-B}}
+\index{connect\-D\-B@{connect\-D\-B}!DBthread@{D\-Bthread}}
+\subsubsection[{connect\-D\-B}]{\setlength{\rightskip}{0pt plus 5cm}void D\-Bthread\-::connect\-D\-B (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{Host, }
+\item[{Q\-String}]{User, }
+\item[{Q\-String}]{Password}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classDBthread_a2dbcf7890c95b1fca26f9bd21d054e46}
+
+
+\hyperlink{classDBthread_a2dbcf7890c95b1fca26f9bd21d054e46}{D\-Bthread\-::connect\-D\-B}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Host} & \\
+\hline
+{\em User} & \\
+\hline
+{\em Password} & Slot for communicating with the main thread and starting the database \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDBthread_a86757b487ce90e3589334d6f96dc6684}{\index{D\-Bthread@{D\-Bthread}!new\-D\-B@{new\-D\-B}}
+\index{new\-D\-B@{new\-D\-B}!DBthread@{D\-Bthread}}
+\subsubsection[{new\-D\-B}]{\setlength{\rightskip}{0pt plus 5cm}void D\-Bthread\-::new\-D\-B (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{query, }
+\item[{Q\-String}]{D\-Bname}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classDBthread_a86757b487ce90e3589334d6f96dc6684}
+
+
+\hyperlink{classDBthread_a86757b487ce90e3589334d6f96dc6684}{D\-Bthread\-::new\-D\-B}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em query} & \\
+\hline
+{\em D\-Bname} & Slot for creating a new db and all the tables needed inside it. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDBthread_a355e688d4a6f590578f2c29f468b3ad0}{\index{D\-Bthread@{D\-Bthread}!open\-D\-B@{open\-D\-B}}
+\index{open\-D\-B@{open\-D\-B}!DBthread@{D\-Bthread}}
+\subsubsection[{open\-D\-B}]{\setlength{\rightskip}{0pt plus 5cm}void D\-Bthread\-::open\-D\-B (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{query}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classDBthread_a355e688d4a6f590578f2c29f468b3ad0}
+
+
+\hyperlink{classDBthread_a355e688d4a6f590578f2c29f468b3ad0}{D\-Bthread\-::open\-D\-B}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em query} & Slot for getting the main's thread request of opening an existing D\-B \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDBthread_ad5e320be8718aa773eeab3303ceb9d07}{\index{D\-Bthread@{D\-Bthread}!store\-Infor@{store\-Infor}}
+\index{store\-Infor@{store\-Infor}!DBthread@{D\-Bthread}}
+\subsubsection[{store\-Infor}]{\setlength{\rightskip}{0pt plus 5cm}void D\-Bthread\-::store\-Infor (
+\begin{DoxyParamCaption}
+\item[{Q\-Vector$<$ {\bf Frame} $>$ $\ast$}]{frames\-To\-Insert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classDBthread_ad5e320be8718aa773eeab3303ceb9d07}
+
+
+\hyperlink{classDBthread_ad5e320be8718aa773eeab3303ceb9d07}{D\-Bthread\-::store\-Infor}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frames\-To\-Insert} & Slot for storing frame information into the database \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDBthread_a37468e05639656f8a6d9f69a3937676e}{\index{D\-Bthread@{D\-Bthread}!store\-Players@{store\-Players}}
+\index{store\-Players@{store\-Players}!DBthread@{D\-Bthread}}
+\subsubsection[{store\-Players}]{\setlength{\rightskip}{0pt plus 5cm}void D\-Bthread\-::store\-Players (
+\begin{DoxyParamCaption}
+\item[{int}]{start, }
+\item[{int}]{end, }
+\item[{Q\-Vector$<$ {\bf Player} $>$ $\ast$}]{players}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classDBthread_a37468e05639656f8a6d9f69a3937676e}
+
+
+\hyperlink{classDBthread_a37468e05639656f8a6d9f69a3937676e}{D\-Bthread\-::store\-Players}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & \\
+\hline
+{\em end} & \\
+\hline
+{\em players} & Slot for storing player information in the database \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+dbthread.\-h\item 
+dbthread.\-cpp\item 
+moc\-\_\-dbthread.\-cpp\end{DoxyCompactItemize}

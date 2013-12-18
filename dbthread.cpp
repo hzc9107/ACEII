@@ -1,5 +1,12 @@
 #include "dbthread.h"
 
+/*!
+ * \brief DBthread::DBthread
+ * \param parent
+ *
+ *  Constructor for building the DBthread,
+ *  initializes the db driver.
+ */
 DBthread::DBthread(QObject *parent) :
     QObject(parent),
     result(true)
@@ -8,10 +15,23 @@ DBthread::DBthread(QObject *parent) :
     qDebug()<<"Running DBthread";
 }
 
+/*!
+ * \brief DBthread::~DBthread
+ *
+ *  Destructor for the DBthread
+ *  removes the db driver.
+ */
 DBthread::~DBthread(){
     QSqlDatabase::removeDatabase("QMYSQL");
 }
 
+/*!
+ * \brief DBthread::connectDB
+ * \param Host
+ * \param User
+ * \param Password
+ *  Slot for communicating with the main thread and starting the database
+ */
 void DBthread::connectDB(QString Host, QString User, QString Password){
     db.setHostName(Host);
     db.setUserName(User);
@@ -23,6 +43,11 @@ void DBthread::connectDB(QString Host, QString User, QString Password){
     }
 }
 
+/*!
+ * \brief DBthread::openDB
+ * \param query
+ *  Slot for getting the main's thread request of opening an existing DB
+ */
 void DBthread::openDB(QString query){
     QSqlQuery quer(query);
     if(!quer.isActive()){
@@ -32,6 +57,13 @@ void DBthread::openDB(QString query){
     }
 }
 
+/*!
+ * \brief DBthread::newDB
+ * \param query
+ * \param DBname
+ *
+ *  Slot for creating a new db and all the tables needed inside it.
+ */
 void DBthread::newDB(QString query, QString DBname){
     QSqlQuery query1(query);
     if(query1.isActive())
@@ -74,10 +106,17 @@ void DBthread::newDB(QString query, QString DBname){
         }
     }
     if(result){
+        qDebug() << result;
         emit querResult(result,QString());
     }
 }
 
+/*!
+ * \brief DBthread::storeInfor
+ * \param framesToInsert
+ *
+ *  Slot for storing frame information into the database
+ */
 void DBthread::storeInfor(QVector<Frame> *framesToInsert){
     qDebug()<< "Storing Info";
     QVector<Frame>::const_iterator it = framesToInsert->begin();
@@ -89,4 +128,21 @@ void DBthread::storeInfor(QVector<Frame> *framesToInsert){
         it++;
     }
     delete framesToInsert;
+}
+
+/*!
+ * \brief DBthread::storePlayers
+ * \param start
+ * \param end
+ * \param players
+ *  Slot for storing player information in the database
+ */
+
+void DBthread::storePlayers(int start, int end, QVector<Player> *players){
+    int contador = start;
+    while(contador != end){
+        QSqlQuery quer(QString("INSERT INTO players (player_label) Values (\"%1\")").arg(players->at(contador).Tag));
+        qDebug() << QString("INSERT INTO players (player_label) Values (\"%1\")").arg(players->at(contador).Tag);
+        contador++;
+    }
 }

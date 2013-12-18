@@ -48,6 +48,7 @@ signals:
     void openThreadDB(QString query);
     void newDBCreate(QString query, QString DBname);
     void storeInfo(QVector<Frame> * framesToInsert);
+    void storePlayers(int start, int end, QVector<Player> *players);
 
 private slots:
     void on_toolButton_3_clicked();
@@ -65,16 +66,17 @@ private slots:
     void openFailedDB(bool result);
     void queryResult(bool result, QString Error);
     void selectPlayer();
+    void FrameByFrame();
 private:
     bool firstTime;
-    int firstFrame, nextFramePos;
+    int firstFrame, nextFramePos, playerSizeOld, currentPlayer;
     float Miliseconds;
     QTimer Time;
     DBthread *thread1;
     QThread *thread;
     QVector<Frame> *FramesInf;
     Ui::AceVal *ui;
-    bool DBConnected, DBOpened;
+    bool DBConnected, DBOpened,rangeSet;
     bool ShiftPressed;
     void CusLay(void);
     void GstIFace(const char *filename);
